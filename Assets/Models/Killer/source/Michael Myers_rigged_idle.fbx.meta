@@ -36,7 +36,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -82,9 +111,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 6ce386bed0c6b89469811dde66063331
-  - cf1b25579bec89f498278ebb8a746f44
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -266,18 +293,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Michael Myers_rigged_idle(Clone)
+    - name: Mivhael Myers_rigged_idle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Myers_LP
-      parentName: Michael Myers_rigged_idle(Clone)
+      parentName: Mivhael Myers_rigged_idle(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: Michael Myers_rigged_idle(Clone)
+      parentName: Mivhael Myers_rigged_idle(Clone)
       position: {x: -0.0035453595, y: 14.792334, z: -0.12114367}
       rotation: {x: 6.776264e-17, y: -0.000000023283064, z: 1.577722e-24, w: 1}
       scale: {x: 1, y: 1, z: 1}
