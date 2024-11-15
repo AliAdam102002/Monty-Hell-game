@@ -1,37 +1,195 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
-public class TimelineManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public GameObject timeline1Object;  // Assign Timeline 1's GameObject in the Inspector
-    public GameObject timeline2Object;  // Assign Timeline 2's GameObject in the Inspector
-    public GameObject cameraAbdo;
+    //public GameObject[] timelineObjects;
+    public GameObject timelineObject0;
+    public GameObject timelineObject1;
+    public GameObject timelineObject2;
+    public GameObject timelineObject3;
+    public GameObject timelineObject4;
+    public GameObject timelineObject5;
 
+    public GameObject cameraAbdo;
+    public GameObject switchCanvas;
+
+    //private PlayableDirector[] timelines;
+    private PlayableDirector timeline0;
     private PlayableDirector timeline1;
     private PlayableDirector timeline2;
+    private PlayableDirector timeline3;
+    private PlayableDirector timeline4;
+    private PlayableDirector timeline5;
+
+    //private int currentTimelineIndex = 0;
+    private int currentDoor = 0;
 
     void Start()
     {
-        // Activate timeline1's GameObject and get the PlayableDirector component
-        timeline1Object.SetActive(true);
-        timeline1 = timeline1Object.GetComponent<PlayableDirector>();
-        timeline2 = timeline2Object.GetComponent<PlayableDirector>();
 
-        // Start playing timeline1 and subscribe to the stopped event
-        timeline1.Play();
-        timeline1.stopped += OnTimeline1Stopped;
+        //foreach (GameObject go in timelineObjects)
+        //{
+        //    go.SetActive(false);
+        //}
+        timelineObject0.SetActive(false);
+        timelineObject1.SetActive(false);
+        timelineObject2.SetActive(false);
+        timelineObject3.SetActive(false);
+        timelineObject4.SetActive(false);
+        timelineObject5.SetActive(false);
+        cameraAbdo.SetActive(false);
+        switchCanvas.SetActive(false);
+
+        //timelines = new PlayableDirector[timelineObjects.Length];
+        //Debug.Log(timelineObjects.Length);
+        //Debug.Log(timelines.Length);
+        //Debug.Log(timelineObjects);
+        timelineObject0.SetActive(true);
+        timeline0 = timelineObject0.GetComponent<PlayableDirector>();
+        timeline0.Play();
     }
 
-    // This method is called automatically when timeline1 finishes
-    void OnTimeline1Stopped(PlayableDirector director)
+    public void Door1()
+    {
+        //Debug.Log(timelineObjects[0]);
+        //Debug.Log(timelineObjects[1]);
+        timeline0.Stop();
+        timelineObject0.SetActive(false);
+        timelineObject1.SetActive(true);
+        timeline1 = timelineObject1.GetComponent<PlayableDirector>();
+        timeline1.Play();
+        //currentTimelineIndex = 1;
+        currentDoor = 1;
+    }
+
+    public void Door2()
+    {
+        timeline0.Stop();
+        timelineObject0.SetActive(false);
+        timelineObject1.SetActive(true);
+        timeline1 = timelineObject1.GetComponent<PlayableDirector>();
+        timeline1.Play();
+        //currentTimelineIndex = 1;
+        currentDoor = 2;
+    }
+
+    public void Door3()
+    {
+        timeline0.Stop();
+        timelineObject0.SetActive(false);
+        timelineObject2.SetActive(true);
+        timeline2 = timelineObject2.GetComponent<PlayableDirector>();
+        timeline2.Play();
+        //currentTimelineIndex = 2;
+        currentDoor = 3;
+    }
+
+    public void switchDoors()
+    {
+        switchCanvas.SetActive(false);
+        cameraAbdo.SetActive(true);
+        if (currentDoor == 1)
+        {
+            timeline1.Stop();
+            timelineObject1.SetActive(false);
+            timelineObject3.SetActive(true);
+            timeline3 = timelineObject3.GetComponent<PlayableDirector>();
+            timeline3.Play();
+            timeline3.stopped += OnTimeline3Stopped;
+            //currentTimelineIndex = 3;
+            currentDoor = 2;
+        }
+        else if (currentDoor == 2)
+        {
+            timeline1.Stop();
+            timelineObject1.SetActive(false);
+            timelineObject5.SetActive(true);
+            timeline5 = timelineObject5.GetComponent<PlayableDirector>();
+            timeline5.Play();
+            timeline5.stopped += OnTimeline5Stopped;
+            //currentTimelineIndex = 5;
+            currentDoor = 1;
+            
+        }
+        else if (currentDoor == 3)
+        {
+            timeline2.Stop();
+            timelineObject2.SetActive(false);
+            timelineObject3.SetActive(true);
+            timeline3 = timelineObject3.GetComponent<PlayableDirector>();
+            timeline3.Play();
+            timeline3.stopped += OnTimeline3Stopped;
+            //currentTimelineIndex = 3;
+            currentDoor = 2;
+        }
+    }
+
+    public void keepDoors()
+    {
+        switchCanvas.SetActive(false);
+        cameraAbdo.SetActive(true);
+        if (currentDoor == 1)
+        {
+            timeline1.Stop();
+            timelineObject1.SetActive(false);
+            timelineObject5.SetActive(true);
+            timeline5 = timelineObject5.GetComponent<PlayableDirector>();
+            timeline5.Play();
+            timeline5.stopped += OnTimeline5Stopped;
+            //currentTimelineIndex = 5;
+        }
+        else if (currentDoor == 2)
+        {
+            timeline1.Stop();
+            timelineObject1.SetActive(false);
+            timelineObject3.SetActive(true);
+            timeline3 = timelineObject3.GetComponent<PlayableDirector>();
+            timeline3.Play();
+            timeline3.stopped += OnTimeline3Stopped;
+            //currentTimelineIndex = 3;
+
+        }
+        else if (currentDoor == 3)
+        {
+            timeline2.Stop();
+            timelineObject2.SetActive(false);
+            timelineObject4.SetActive(true);
+            timeline4 = timelineObject4.GetComponent<PlayableDirector>();
+            timeline4.Play();
+            timeline4.stopped += OnTimeline4Stopped;
+            //currentTimelineIndex = 4;
+        }
+    }
+
+    void OnTimeline3Stopped(PlayableDirector director)
     {
         // Unsubscribe from the event and deactivate timeline1
-        timeline1.stopped -= OnTimeline1Stopped;
-        timeline1Object.SetActive(false);
+        timeline3.stopped -= OnTimeline3Stopped;
+        timelineObject3.SetActive(false);
 
         // Activate and play timeline2
-        timeline2Object.SetActive(true);
-        cameraAbdo.SetActive(true);
-        timeline2.Play();
+        SceneManager.LoadScene("Win Scene");
+    }
+
+    void OnTimeline4Stopped(PlayableDirector director)
+    {
+        // Unsubscribe from the event and deactivate timeline1
+        timeline4.stopped -= OnTimeline4Stopped;
+        timelineObject4.SetActive(false);
+
+        // Activate and play timeline2
+        SceneManager.LoadScene("Gameover Scene");
+    }
+
+    void OnTimeline5Stopped(PlayableDirector director)
+    {
+        // Unsubscribe from the event and deactivate timeline1
+        timeline5.stopped -= OnTimeline3Stopped;
+        timelineObject5.SetActive(false);
+
+        // Activate and play timeline2
+        SceneManager.LoadScene("Gameover Scene");
     }
 }
