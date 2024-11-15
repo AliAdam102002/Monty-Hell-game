@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Mainmenu_room Scene.unity
     guid: b68a48bb8523ab54cafe0d805580e4ae
   - enabled: 1
-    path: Assets/Scenes/Gameplay - 3alolo.unity
+    path: Assets/Scenes/Gameplay - Omar.unity
     guid: aba89e79f5a942e4d9eee07984e3a6a9
   - enabled: 1
     path: Assets/Scenes/Credits.unity
